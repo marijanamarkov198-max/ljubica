@@ -25,17 +25,37 @@ z-index: 20;
 
 opacity: 0;
 
-transition: 1.5s ease;
+pointer-events: none;
 
-text-shadow: 0 0 20px pink, 0 0 40px hotpink;
+text-shadow:
+
+0 0 15px #ff69b4,
+
+0 0 30px #ff69b4,
+
+0 0 60px #ff1493,
+
+0 0 120px #ff1493;
 
 }
 
 #love.show {
 
-opacity: 1;
+animation: loveBoom 4s forwards;
 
-transform: translate(-50%, -50%) scale(1.2);
+}
+
+@keyframes loveBoom {
+
+0%{opacity:0;transform:translate(-50%,-50%) scale(0);}
+
+20%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+
+55%{transform:translate(-50%,-50%) scale(3);}
+
+75%{transform:translate(-50%,-50%) scale(5);filter:brightness(2);}
+
+100%{opacity:0;transform:translate(-50%,120vh) scale(0.2);}
 
 }
 
@@ -121,6 +141,8 @@ animation: fall linear infinite;
 
 opacity: 0.9;
 
+text-shadow: 0 0 8px pink, 0 0 25px hotpink;
+
 }
 
 @keyframes fall {
@@ -130,13 +152,75 @@ opacity: 0.9;
 100% { transform: translateY(110vh); }
 
 }
+
+.secret{
+
+position:fixed;
+
+width:80px;
+
+height:80px;
+
+z-index:999;
+
+cursor:pointer;
+
+}
+
+.tl{top:0;left:0;}
+
+.tr{top:0;right:0;}
+
+.bl{bottom:0;left:0;}
+
+.br{bottom:0;right:0;}
+
+#secretMessage{
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:40px;
+
+color:#8de8ff;
+
+opacity:0;
+
+transition:1s;
+
+z-index:1000;
+
+text-align:center;
+
+text-shadow:0 0 10px #8de8ff,0 0 50px #00d9ff;
+
+}
+
+#secretMessage.show{
+
+opacity:1;
+
+}
 </style>
 </head>
-<body>
+ <body>
 <div id="left" class="curtain"></div>
 <div id="right" class="curtain"></div>
 <div id="love">VOLIM TE</div>
 <img id="photo" src="slika.png">
+<div class="secret tl"></div>
+<div class="secret tr"></div>
+<div class="secret bl"></div>
+<div class="secret br"></div>
+<div id="secretMessage">
+
+💙 minus i minus daju plus💙
+</div>
 <script>
 
 let words = [
@@ -161,11 +245,7 @@ el.style.animationDuration = (5 + Math.random() * 4) + "s";
 
 document.body.appendChild(el);
 
-setTimeout(() => {
-
-  el.remove();
-
-}, 10000);
+setTimeout(() => el.remove(), 10000);
 
 }
 
@@ -173,7 +253,7 @@ window.onload = () => {
 
 document.body.classList.add("loaded");
 
-setInterval(spawn, 300);
+setInterval(spawn, 120);
 
 setTimeout(() => {
 
@@ -181,9 +261,18 @@ document.getElementById("love").classList.add("show");
 
 }, 10000);
 
+document.querySelectorAll(".secret").forEach(el => {
+
+el.addEventListener("click", () => {
+
+document.getElementById("secretMessage").classList.add("show");
+
+});
+
+});
+
 };
 </script>
 </body>
 </html>
  
-</html>
