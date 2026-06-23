@@ -1,112 +1,189 @@
 <!DOCTYPE html>
 <html>
- <body>
-<div id="love">VOLIM TE</div>
-<script>
- <script>
-document.getElementById("love").classList.add("show");
-</script>
-</script>
-</body>
 <head>
 <meta charset="UTF-8">
 <title>za ljubicu💖</title>
 <style>
- #love {
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%) scale(0);
- font-size: 80px;
- color: hotpink;
- font-weight: bold;
- z-index: 20;
- opacity: 0;
- transition: 1.5s ease;
- text-shadow: 0 0 20px pink, 0 0 40px hotpink;
+
+#love {
+
+position: absolute;
+
+top: 50%;
+
+left: 50%;
+
+transform: translate(-50%, -50%) scale(0);
+
+font-size: 80px;
+
+color: hotpink;
+
+font-weight: bold;
+
+z-index: 20;
+
+opacity: 0;
+
+transition: 1.5s ease;
+
+text-shadow: 0 0 20px pink, 0 0 40px hotpink;
+
 }
+
 #love.show {
- opacity: 1;
- transform: translate(-50%, -50%) scale(1.2);
+
+opacity: 1;
+
+transform: translate(-50%, -50%) scale(1.2);
+
 }
+
 body {
- margin: 0;
- overflow: hidden;
- background: black;
- font-family: Arial;
+
+margin: 0;
+
+overflow: hidden;
+
+background: black;
+
+font-family: Arial;
+
 }
-/* 🎭 ZAVJESE (više “kazališni” izgled) */
+
 .curtain {
- position: fixed;
- top: 0;
- width: 50%;
- height: 100%;
- background: linear-gradient(to right, #8b0000, #ff1e56);
- z-index: 10;
- transition: 2s ease;
- box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+
+position: fixed;
+
+top: 0;
+
+width: 50%;
+
+height: 100%;
+
+background: linear-gradient(to right, #8b0000, #ff1e56);
+
+z-index: 10;
+
+transition: 2s ease;
+
+box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+
 }
+
 #left { left: 0; }
+
 #right { right: 0; }
-/* otvorenje zavjesa automatski */
+
 body.loaded #left { transform: translateX(-100%); }
+
 body.loaded #right { transform: translateX(100%); }
-/* 💕 slika */
+
 #photo {
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- width: 260px;
- border-radius: 25px;
- opacity: 0;
- transition: 2s ease;
- z-index: 2;
+
+position: absolute;
+
+top: 50%;
+
+left: 50%;
+
+transform: translate(-50%, -50%);
+
+width: 260px;
+
+border-radius: 25px;
+
+opacity: 0;
+
+transition: 2s ease;
+
+z-index: 2;
+
 }
+
 body.loaded #photo {
- opacity: 1;
+
+opacity: 1;
+
 }
-/* 💖 padajuće riječi */
+
 .name {
- position: absolute;
- top: -50px;
- color: pink;
- font-size: 16px;
- animation: fall linear infinite;
- opacity: 0.9;
+
+position: absolute;
+
+top: -50px;
+
+color: pink;
+
+font-size: 16px;
+
+animation: fall linear infinite;
+
+opacity: 0.9;
+
 }
+
 @keyframes fall {
- 0% { transform: translateY(-100px); }
- 100% { transform: translateY(110vh); }
+
+0% { transform: translateY(-100px); }
+
+100% { transform: translateY(110vh); }
+
 }
 </style>
 </head>
 <body>
 <div id="left" class="curtain"></div>
 <div id="right" class="curtain"></div>
+<div id="love">VOLIM TE</div>
 <img id="photo" src="slika.png">
 <script>
+
 let words = [
- "ljubica","bebica","simica","simecki",
- "buba","beba","mici","picka","micka"
+
+"ljubica","bebica","simica","simecki",
+
+"buba","beba","mici","micka"
+
 ];
+
 function spawn() {
- let el = document.createElement("div");
- el.className = "name";
- el.innerText = words[Math.floor(Math.random() * words.length)];
- el.style.left = Math.random() * window.innerWidth + "px";
- el.style.animationDuration = (5 + Math.random() * 4) + "s";
- document.body.appendChild(el);
- setTimeout(() => {
-   el.remove();
- }, 10000);
+
+let el = document.createElement("div");
+
+el.className = "name";
+
+el.innerText = words[Math.floor(Math.random() * words.length)];
+
+el.style.left = Math.random() * window.innerWidth + "px";
+
+el.style.animationDuration = (5 + Math.random() * 4) + "s";
+
+document.body.appendChild(el);
+
+setTimeout(() => {
+
+  el.remove();
+
+}, 10000);
+
 }
-// 🎬 sve kreće automatski
+
 window.onload = () => {
- document.body.classList.add("loaded");
- setInterval(spawn, 300); // stalno padaju riječi
+
+document.body.classList.add("loaded");
+
+setInterval(spawn, 300);
+
+setTimeout(() => {
+
+document.getElementById("love").classList.add("show");
+
+}, 10000);
+
 };
-</script>  
- 
+</script>
 </body>
+</html>
+ 
 </html>
