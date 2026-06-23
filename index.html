@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html>
+ <body>
+<div id="love">VOLIM TE</div>
+<script>
+ setTimeout(() => {
+   document.getElementById("love").classList.add("show");
+ }, 10000);
+</script>
+</body>
 <head>
 <meta charset="UTF-8">
 <title>za ljubicu💖</title>
 <style>
+ #love {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%) scale(0);
+ font-size: 80px;
+ color: hotpink;
+ font-weight: bold;
+ z-index: 20;
+ opacity: 0;
+ transition: 1.5s ease;
+ text-shadow: 0 0 20px pink, 0 0 40px hotpink;
+}
+#love.show {
+ opacity: 1;
+ transform: translate(-50%, -50%) scale(1.2);
+}
 body {
  margin: 0;
  overflow: hidden;
@@ -81,6 +106,7 @@ window.onload = () => {
  document.body.classList.add("loaded");
  setInterval(spawn, 300); // stalno padaju riječi
 };
-</script>
+</script>  
+ 
 </body>
 </html>
